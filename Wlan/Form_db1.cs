@@ -122,6 +122,7 @@ namespace Wlan
             cmd_select(str_sql);
         }
 
+        //打开自动录入窗口
         private void btn_auto_input_Click(object sender, EventArgs e)
         {
             DataAutoInput db录入窗口 = new DataAutoInput();

@@ -32,6 +32,7 @@
             this.txt_address = new System.Windows.Forms.TextBox();
             this.label_tab = new System.Windows.Forms.Label();
             this.btn_on = new System.Windows.Forms.Button();
+            this.btn_reflesh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_address
@@ -60,11 +61,22 @@
             this.btn_on.UseVisualStyleBackColor = true;
             this.btn_on.Click += new System.EventHandler(this.btn_on_Click);
             // 
+            // btn_reflesh
+            // 
+            this.btn_reflesh.Location = new System.Drawing.Point(204, 81);
+            this.btn_reflesh.Name = "btn_reflesh";
+            this.btn_reflesh.Size = new System.Drawing.Size(75, 23);
+            this.btn_reflesh.TabIndex = 3;
+            this.btn_reflesh.Text = "btn_reflesh";
+            this.btn_reflesh.UseVisualStyleBackColor = true;
+            this.btn_reflesh.Click += new System.EventHandler(this.btn_reflesh_Click);
+            // 
             // DataAutoInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 137);
+            this.Controls.Add(this.btn_reflesh);
             this.Controls.Add(this.btn_on);
             this.Controls.Add(this.label_tab);
             this.Controls.Add(this.txt_address);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.TextBox txt_address;
         private System.Windows.Forms.Label label_tab;
         private System.Windows.Forms.Button btn_on;
+        private System.Windows.Forms.Button btn_reflesh;
     }
 }

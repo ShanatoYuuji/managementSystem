@@ -99,6 +99,12 @@
     <Compile Include="Form_in.Designer.cs">
       <DependentUpon>Form_in.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_pwd_confirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_pwd_confirm.Designer.cs">
+      <DependentUpon>Form_pwd_confirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DataAutoInput.resx">
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_in.resx">
       <DependentUpon>Form_in.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_pwd_confirm.resx">
+      <DependentUpon>Form_pwd_confirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
