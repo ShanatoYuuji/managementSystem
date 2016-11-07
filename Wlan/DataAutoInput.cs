@@ -60,7 +60,7 @@ namespace Wlan
             }
         }
 
-        //委托实现方法二
+        //委托实现方法二 
         private void pwdconfirm_2(int m)
         {
             if (m == 12345)

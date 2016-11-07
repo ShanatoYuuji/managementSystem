@@ -18,7 +18,6 @@ namespace Wlan
         {
             InitializeComponent();
             this.confirm = confirm;
-           
         }
 
         private void btn_confirm_Click(object sender, EventArgs e)
