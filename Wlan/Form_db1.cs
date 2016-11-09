@@ -115,7 +115,6 @@ namespace Wlan
             string locallink = txt_in_locallink.Text.Trim();
             string dlink = txt_in_Dlink.Text.Trim();
             string author = txt_in_author.Text.Trim();
-
             String str_sql = String.Format("CALL `proc_anime`('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');", name, cnname,
                 staff, locallink.Replace("\\", "\\\\"), dlink, author);
             Console.WriteLine(str_sql);

@@ -104,5 +104,10 @@ namespace Wlan
             数据库窗口.Show();
 
         }
+
+        private void btn_QEcode_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

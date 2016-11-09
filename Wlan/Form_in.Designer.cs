@@ -48,6 +48,8 @@
             this.txt_know = new System.Windows.Forms.TextBox();
             this.btn_know = new System.Windows.Forms.Button();
             this.btn_db1 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_QEcode = new System.Windows.Forms.Button();
             this.tab_wlan.SuspendLayout();
             this.tab_pwaln.SuspendLayout();
             this.tabp_url.SuspendLayout();
@@ -169,7 +171,7 @@
             this.tabp_url.Location = new System.Drawing.Point(4, 22);
             this.tabp_url.Name = "tabp_url";
             this.tabp_url.Padding = new System.Windows.Forms.Padding(3);
-            this.tabp_url.Size = new System.Drawing.Size(339, 198);
+            this.tabp_url.Size = new System.Drawing.Size(369, 198);
             this.tabp_url.TabIndex = 1;
             this.tabp_url.Text = "磁力链接转换";
             this.tabp_url.UseVisualStyleBackColor = true;
@@ -181,7 +183,7 @@
             this.tab_ptime.Location = new System.Drawing.Point(4, 22);
             this.tab_ptime.Name = "tab_ptime";
             this.tab_ptime.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_ptime.Size = new System.Drawing.Size(339, 198);
+            this.tab_ptime.Size = new System.Drawing.Size(369, 198);
             this.tab_ptime.TabIndex = 2;
             this.tab_ptime.Text = "定时关机";
             this.tab_ptime.UseVisualStyleBackColor = true;
@@ -211,7 +213,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(339, 198);
+            this.tabPage1.Size = new System.Drawing.Size(369, 198);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "闰年";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -243,11 +245,32 @@
             this.btn_db1.UseVisualStyleBackColor = true;
             this.btn_db1.Click += new System.EventHandler(this.btn_db1_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btn_QEcode
+            // 
+            this.btn_QEcode.Location = new System.Drawing.Point(119, 261);
+            this.btn_QEcode.Name = "btn_QEcode";
+            this.btn_QEcode.Size = new System.Drawing.Size(75, 23);
+            this.btn_QEcode.TabIndex = 13;
+            this.btn_QEcode.Text = "btn_二维码";
+            this.btn_QEcode.UseVisualStyleBackColor = true;
+            this.btn_QEcode.Click += new System.EventHandler(this.btn_QEcode_Click);
+            // 
             // Form_in
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 314);
+            this.Controls.Add(this.btn_QEcode);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_db1);
             this.Controls.Add(this.tab_wlan);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -286,6 +309,8 @@
         private System.Windows.Forms.TextBox txt_know;
         private System.Windows.Forms.Button btn_know;
         private System.Windows.Forms.Button btn_db1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_QEcode;
     }
 }
 

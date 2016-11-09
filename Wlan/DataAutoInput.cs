@@ -91,11 +91,18 @@ namespace Wlan
             MySqlCommand MySQL命令 = new MySqlCommand(SQL语句,连接);
             try
             {
+                /**
+                 * 
                 if (MySQL命令.ExecuteNonQuery() > 0)
                 {
                     MessageBox.Show("执行成功！");
                 }
                 else
+                {
+                    MessageBox.Show("执行失败！");
+                }
+                **/
+                if (MySQL命令.ExecuteNonQuery() <= 0)
                 {
                     MessageBox.Show("执行失败！");
                 }
