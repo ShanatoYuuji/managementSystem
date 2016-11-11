@@ -106,12 +106,46 @@ namespace Wlan
                 Author = value;
             }
         }
-
+        /// <summary>
+        /// 无参构造函数
+        /// </summary>
         public Anime()
         {
 
         }
-
+        /// <summary>
+        /// 没有Num的构造函数
+        /// </summary>
+        /// <param name="Name">名字</param>
+        /// <param name="Name_cn">中文名</param>
+        /// <param name="Staff">staff</param>
+        /// <param name="LocalLink">本地地址</param>
+        /// <param name="DLink">磁力链接</param>
+        /// <param name="Author">作者</param>
+        public Anime(string Name,
+                     string Name_cn,
+                     string Staff,
+                     string LocalLink,
+                     string DLink,
+                     string Author)
+        {
+            this.Name1 = Name;
+            this.Name_cn1 = Name_cn;
+            this.Staff1 = Staff;
+            this.LocalLink1 = LocalLink;
+            this.DLink1 = DLink;
+            this.Author1 = Author;
+        }
+        /// <summary>
+        ///全参构造函数
+        /// </summary>
+        /// <param name="Num">ID</param>
+        /// <param name="Name">名字</param>
+        /// <param name="Name_cn">中文名</param>
+        /// <param name="Staff">staff</param>
+        /// <param name="LocalLink">本地地址 </param>
+        /// <param name="DLink">磁力链接</param>
+        /// <param name="Author">作者</param>
         public Anime(int Num,
                      string Name,
                      string Name_cn,

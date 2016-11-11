@@ -17,8 +17,17 @@ namespace Wlan
         {
             InitializeComponent();
         }
-        //定义数据库连接字符串
-        private String str_db = "Server=localhost;User ID=root;Password=123zzz;Database=cbb;CharSet=utf8;";
+        
+        
+       /// <summary>
+       /// 提供MySQL数据库的连接
+       /// </summary>
+       /// <returns></returns>
+        private MySqlConnection offerMySqlConnection()
+        {  //定义数据库连接字符串
+            String str_db = "Server=localhost;User ID=root;Password=123zzz;Database=cbb;CharSet=utf8;";
+            return new MySqlConnection(str_db);
+        }
 
         //执行全部显示语句
         private void btn_select_all_Click(object sender, EventArgs e)
@@ -26,7 +35,7 @@ namespace Wlan
             string strcmd = "select * from anime";
             cmd_select(strcmd);
         }
-
+        
         //执行自定义语句
         private void btn_cmd_Click(object sender, EventArgs e)
         {
@@ -37,10 +46,11 @@ namespace Wlan
             }
         }
 
-        //SQL文查询语句执行 
+        
+        //SQL文查询语句执行没有返回结果
         private void cmd_select(String text)
         {
-            MySqlConnection con = new MySqlConnection(str_db);
+            MySqlConnection con = offerMySqlConnection();
             con.Open();
             try
             {
@@ -64,6 +74,8 @@ namespace Wlan
             }
 
         }
+
+
         //打开文件路径
         private void btn_open_Click(object sender, EventArgs e)
         {
@@ -73,6 +85,7 @@ namespace Wlan
             Console.WriteLine(addressString);
             System.Diagnostics.Process.Start("explorer.exe", addressString);
         }
+
         //单元格选中时内容显示
         private void Dgv_db1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -89,28 +102,15 @@ namespace Wlan
             txt_author.Text = Dgv_db1.CurrentRow.Cells[6].Value.ToString();
         }
 
-        //修改信息
-        private void btn_edit_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 根据 提供的动漫返回SQL用的参数
+        /// </summary>
+        /// <param name="anime">动漫</param>
+        /// <returns></returns>
+        private MySqlParameter [] offerParameters(Anime anime)
         {
-
-            int index = Int32.Parse(Dgv_db1.CurrentRow.Cells[0].Value.ToString());
-            String string_name = txt_name.Text.Trim();
-            String string_cnname = txt_cnname.Text.Trim();
-            String string_staff = txt_staff.Text.Trim();
-            String string_LocalLink = txt_LocalLink.Text.Trim();
-            String string_Dlink = txt_D_link.Text.Trim();
-            String string_author = txt_author.Text.Trim();
-
-            Anime anime = new Anime(index, string_name, string_cnname, string_staff, string_LocalLink, string_Dlink, string_author);
-
-            String sql = String.Format("update anime set Name = 'asl', Name_CN = 'asl', Staff = 'asl', LocalLink = 'asl', DLink = 'asl', Author = 'asl' where Num = 29");
-            MySqlCommand command = new MySqlCommand();
-            command.Connection = new MySqlConnection(str_db);
-            command.CommandText = "update anime set Name = @Name, Name_CN = @Name_CN, Staff = @Staff, LocalLink = @LocalLink, DLink = @DLink, Author = @Author where Num = 29";
-            
-            
             MySqlParameter[] parameters =
-            {
+             {
                 new MySqlParameter("@Name",MySqlDbType.VarChar),
                 new MySqlParameter("@Name_CN",MySqlDbType.VarChar),
                 new MySqlParameter("@Staff",MySqlDbType.VarChar),
@@ -127,10 +127,31 @@ namespace Wlan
             parameters[4].Value = anime.DLink1;
             parameters[5].Value = anime.Author1;
             parameters[6].Value = anime.Num1;
+            return parameters;
+        }
+        //修改信息
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+
+            int index = Int32.Parse(Dgv_db1.CurrentRow.Cells[0].Value.ToString());
+            String string_name = txt_name.Text.Trim();
+            String string_cnname = txt_cnname.Text.Trim();
+            String string_staff = txt_staff.Text.Trim();
+            String string_LocalLink = txt_LocalLink.Text.Trim();
+            String string_Dlink = txt_D_link.Text.Trim();
+            String string_author = txt_author.Text.Trim();
+
+            Anime anime = new Anime(index, string_name, string_cnname, string_staff, string_LocalLink, string_Dlink, string_author);
+            
+            MySqlCommand command = new MySqlCommand();
+            command.Connection = offerMySqlConnection();
+            command.CommandText = "update anime set Name = @Name, Name_CN = @Name_CN, Staff = @Staff, LocalLink = @LocalLink, DLink = @DLink, Author = @Author where Num = @Num";
+
+            MySqlParameter[] parameters = offerParameters(anime);
             command.Parameters.AddRange(parameters);
-          
-            command.Connection.Open();
             //command.Parameters.Add(parameters[0]);
+
+            command.Connection.Open();
             Console.WriteLine(command.CommandText);
             command.ExecuteNonQuery();
           
@@ -138,6 +159,8 @@ namespace Wlan
             command.Connection.Close();
             //cmd_select("select * from anime");
         }
+
+        
 
         //呼叫存储过程
         private void btn_add_Click(object sender, EventArgs e)
@@ -148,10 +171,15 @@ namespace Wlan
             string locallink = txt_in_locallink.Text.Trim();
             string dlink = txt_in_Dlink.Text.Trim();
             string author = txt_in_author.Text.Trim();
-            String str_sql = String.Format("CALL `proc_anime`('{0}', '{1}', '{2}', '{3}', '{4}', '{5}');", name, cnname,
-                staff, locallink.Replace("\\", "\\\\"), dlink, author);
-            Console.WriteLine(str_sql);
-            cmd_select(str_sql);
+            Anime anime = new Anime(name, cnname, staff, locallink, dlink, author);
+            MySqlCommand command = new MySqlCommand();
+            command.Connection = offerMySqlConnection();
+            command.CommandText = String.Format("CALL `proc_anime`(@name, @cnname, @staff, @locallink,@dlink,@author) ");
+            MySqlParameter[] mysqlParameters = offerParameters(anime);
+            command.Parameters.AddRange(mysqlParameters);
+
+            command.ExecuteNonQuery();
+            Console.WriteLine(command.CommandText);
         }
 
         //打开自动录入窗口
