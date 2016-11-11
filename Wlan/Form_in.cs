@@ -46,7 +46,7 @@ namespace Wlan
             string url = "magnet:?xt=urn:btih:" + this.txt_url.Text.Trim();
             //this.txt_url.Text = url;
             this.lab_change.Text = url;
-            System.Diagnostics.Process.Start("Thunder.exe",url);
+            //System.Diagnostics.Process.Start("Thunder.exe",url);
         }
 
         private void btn_shutdown_Click(object sender, EventArgs e)
