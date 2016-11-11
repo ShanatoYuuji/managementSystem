@@ -17,64 +17,40 @@ namespace Wlan
         {
             InitializeComponent();
         }
-        
-        
-       /// <summary>
-       /// 提供MySQL数据库的连接
-       /// </summary>
-       /// <returns></returns>
-        private MySqlConnection offerMySqlConnection()
-        {  //定义数据库连接字符串
-            String str_db = "Server=localhost;User ID=root;Password=123zzz;Database=cbb;CharSet=utf8;";
-            return new MySqlConnection(str_db);
-        }
+
 
         //执行全部显示语句
         private void btn_select_all_Click(object sender, EventArgs e)
         {
-            string strcmd = "select * from anime";
-            cmd_select(strcmd);
-        }
-        
-        //执行自定义语句
-        private void btn_cmd_Click(object sender, EventArgs e)
-        {
-            string strcmd = this.txt_cmd.Text.Trim().ToString();
-            if (strcmd != null && strcmd != "")
-            {
-                cmd_select(strcmd);
-            }
-        }
-
-        
-        //SQL文查询语句执行没有返回结果
-        private void cmd_select(String text)
-        {
-            MySqlConnection con = offerMySqlConnection();
-            con.Open();
+            DB_access access = new DB_access();
+            DataSet ds = access.db_search();
             try
             {
-                MySqlCommand cmd = new MySqlCommand(text, con);
-                MySqlDataAdapter ada = new MySqlDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                if (ada != null)
-                {
-                    ada.Fill(ds);
-                }
-                if (ds.Tables[0] != null && ds.Tables[0].Columns.Count >= 1)
+                if (ds.Tables[0] != null && ds.Tables[0].Columns.Count > 1)
                 {
                     Dgv_db1.DataSource = ds.Tables[0];
                 }
-                con.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message.ToString());
-                con.Close();
+                Console.WriteLine(ex.Message);
             }
-
         }
 
+        //执行自定义语句
+        private void btn_cmd_Click(object sender, EventArgs e)
+        {
+            String text = this.txt_cmd.Text.Trim();
+            DB_access access = new DB_access();
+            try
+            {
+                access.db_go(text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
         //打开文件路径
         private void btn_open_Click(object sender, EventArgs e)
@@ -102,33 +78,6 @@ namespace Wlan
             txt_author.Text = Dgv_db1.CurrentRow.Cells[6].Value.ToString();
         }
 
-        /// <summary>
-        /// 根据 提供的动漫返回SQL用的参数
-        /// </summary>
-        /// <param name="anime">动漫</param>
-        /// <returns></returns>
-        private MySqlParameter [] offerParameters(Anime anime)
-        {
-            MySqlParameter[] parameters =
-             {
-                new MySqlParameter("@Name",MySqlDbType.VarChar),
-                new MySqlParameter("@Name_CN",MySqlDbType.VarChar),
-                new MySqlParameter("@Staff",MySqlDbType.VarChar),
-                new MySqlParameter("@LocalLink",MySqlDbType.VarChar),
-                new MySqlParameter("@DLink",MySqlDbType.VarChar),
-                new MySqlParameter("@Author",MySqlDbType.VarChar),
-                new MySqlParameter("@Num",MySqlDbType.Int32)
-            };
-
-            parameters[0].Value = anime.Name1;
-            parameters[1].Value = anime.Name_cn1;
-            parameters[2].Value = anime.Staff1;
-            parameters[3].Value = anime.LocalLink1;
-            parameters[4].Value = anime.DLink1;
-            parameters[5].Value = anime.Author1;
-            parameters[6].Value = anime.Num1;
-            return parameters;
-        }
         //修改信息
         private void btn_edit_Click(object sender, EventArgs e)
         {
@@ -140,27 +89,14 @@ namespace Wlan
             String string_LocalLink = txt_LocalLink.Text.Trim();
             String string_Dlink = txt_D_link.Text.Trim();
             String string_author = txt_author.Text.Trim();
-
             Anime anime = new Anime(index, string_name, string_cnname, string_staff, string_LocalLink, string_Dlink, string_author);
-            
-            MySqlCommand command = new MySqlCommand();
-            command.Connection = offerMySqlConnection();
-            command.CommandText = "update anime set Name = @Name, Name_CN = @Name_CN, Staff = @Staff, LocalLink = @LocalLink, DLink = @DLink, Author = @Author where Num = @Num";
-
-            MySqlParameter[] parameters = offerParameters(anime);
-            command.Parameters.AddRange(parameters);
-            //command.Parameters.Add(parameters[0]);
-
-            command.Connection.Open();
-            Console.WriteLine(command.CommandText);
-            command.ExecuteNonQuery();
-          
-            Console.WriteLine(command.CommandText);
-            command.Connection.Close();
-            //cmd_select("select * from anime");
+            DB_access access = new DB_access();
+            int result = access.db_update(anime);
+            if (result > 0)
+            {
+                MessageBox.Show("修改成功");
+            }
         }
-
-        
 
         //呼叫存储过程
         private void btn_add_Click(object sender, EventArgs e)
@@ -172,14 +108,14 @@ namespace Wlan
             string dlink = txt_in_Dlink.Text.Trim();
             string author = txt_in_author.Text.Trim();
             Anime anime = new Anime(name, cnname, staff, locallink, dlink, author);
-            MySqlCommand command = new MySqlCommand();
-            command.Connection = offerMySqlConnection();
-            command.CommandText = String.Format("CALL `proc_anime`(@name, @cnname, @staff, @locallink,@dlink,@author) ");
-            MySqlParameter[] mysqlParameters = offerParameters(anime);
-            command.Parameters.AddRange(mysqlParameters);
 
-            command.ExecuteNonQuery();
-            Console.WriteLine(command.CommandText);
+            DB_access acceess = new DB_access();
+            int result = acceess.db_insert(anime);
+            if (result > 0)
+            {
+                MessageBox.Show("插入成功");
+            }
+
         }
 
         //打开自动录入窗口

@@ -35,7 +35,7 @@
             // 
             // btn_QEcode
             // 
-            this.btn_QEcode.Location = new System.Drawing.Point(332, 257);
+            this.btn_QEcode.Location = new System.Drawing.Point(272, 211);
             this.btn_QEcode.Name = "btn_QEcode";
             this.btn_QEcode.Size = new System.Drawing.Size(75, 23);
             this.btn_QEcode.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // txt_in
             // 
-            this.txt_in.Location = new System.Drawing.Point(239, 113);
+            this.txt_in.Location = new System.Drawing.Point(196, 119);
             this.txt_in.Name = "txt_in";
             this.txt_in.Size = new System.Drawing.Size(261, 21);
             this.txt_in.TabIndex = 1;
@@ -53,7 +53,7 @@
             // lab_txt
             // 
             this.lab_txt.AutoSize = true;
-            this.lab_txt.Location = new System.Drawing.Point(54, 122);
+            this.lab_txt.Location = new System.Drawing.Point(35, 122);
             this.lab_txt.Name = "lab_txt";
             this.lab_txt.Size = new System.Drawing.Size(113, 12);
             this.lab_txt.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 372);
+            this.ClientSize = new System.Drawing.Size(492, 323);
             this.Controls.Add(this.lab_txt);
             this.Controls.Add(this.txt_in);
             this.Controls.Add(this.btn_QEcode);

@@ -92,6 +92,7 @@
     <Compile Include="DataAutoInput.Designer.cs">
       <DependentUpon>DataAutoInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB_access.cs" />
     <Compile Include="Form_db1.cs">
       <SubType>Form</SubType>
     </Compile>
