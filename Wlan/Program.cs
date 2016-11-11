@@ -16,7 +16,7 @@ namespace Wlan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_QEcode());
+            Application.Run(new Form_in());
         }
     }
 }

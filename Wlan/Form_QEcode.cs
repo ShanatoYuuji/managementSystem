@@ -23,26 +23,25 @@ namespace Wlan
 
         private void btn_QEcode_Click(object sender, EventArgs e)
         {
-            String text = "喜欢吃钢条";
-            //Logo 图片
+            String text = txt_in.Text.Trim();
+           
             BarcodeWriter writer = new BarcodeWriter();
-            writer.Format = BarcodeFormat.QR_CODE;
+            writer.Format = BarcodeFormat.QR_CODE;//设置生成的图片的样式
             QrCodeEncodingOptions options = new QrCodeEncodingOptions();
             options.DisableECI = true;
 
-            options.CharacterSet = "UTF-8";
+            options.CharacterSet = "UTF-8";//内容编码
 
-            options.Width = 350;
-            options.Height = 350;
+            options.Width = 350;//宽度
+            options.Height = 350;//高度
 
-            options.Margin = 1;
+            options.Margin = 1;//边距
             writer.Options = options;
 
             Bitmap map = writer.Write(text);
             string filename = @"D:\generate1.png";
             map.Save(filename, ImageFormat.Png);
             map.Dispose();
-            
         }
     }
 }

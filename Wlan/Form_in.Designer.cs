@@ -48,7 +48,6 @@
             this.txt_know = new System.Windows.Forms.TextBox();
             this.btn_know = new System.Windows.Forms.Button();
             this.btn_db1 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btn_QEcode = new System.Windows.Forms.Button();
             this.tab_wlan.SuspendLayout();
             this.tab_pwaln.SuspendLayout();
@@ -144,7 +143,7 @@
             this.tab_wlan.Location = new System.Drawing.Point(12, 12);
             this.tab_wlan.Name = "tab_wlan";
             this.tab_wlan.SelectedIndex = 0;
-            this.tab_wlan.Size = new System.Drawing.Size(377, 224);
+            this.tab_wlan.Size = new System.Drawing.Size(419, 230);
             this.tab_wlan.TabIndex = 10;
             // 
             // tab_pwaln
@@ -158,7 +157,7 @@
             this.tab_pwaln.Location = new System.Drawing.Point(4, 22);
             this.tab_pwaln.Name = "tab_pwaln";
             this.tab_pwaln.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_pwaln.Size = new System.Drawing.Size(369, 198);
+            this.tab_pwaln.Size = new System.Drawing.Size(411, 204);
             this.tab_pwaln.TabIndex = 0;
             this.tab_pwaln.Text = "无线网用";
             this.tab_pwaln.UseVisualStyleBackColor = true;
@@ -245,15 +244,6 @@
             this.btn_db1.UseVisualStyleBackColor = true;
             this.btn_db1.Click += new System.EventHandler(this.btn_db1_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // btn_QEcode
             // 
             this.btn_QEcode.Location = new System.Drawing.Point(119, 261);
@@ -270,7 +260,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 314);
             this.Controls.Add(this.btn_QEcode);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_db1);
             this.Controls.Add(this.tab_wlan);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -309,7 +298,6 @@
         private System.Windows.Forms.TextBox txt_know;
         private System.Windows.Forms.Button btn_know;
         private System.Windows.Forms.Button btn_db1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_QEcode;
     }
 }

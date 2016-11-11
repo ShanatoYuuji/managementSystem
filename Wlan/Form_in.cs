@@ -51,7 +51,7 @@ namespace Wlan
 
         private void btn_shutdown_Click(object sender, EventArgs e)
         {
-
+            
             DateTime now = new DateTime();
             now = DateTime.Now;
             TimeSpan 时间差 = dtp_close.Value.Subtract(now);
@@ -107,7 +107,8 @@ namespace Wlan
 
         private void btn_QEcode_Click(object sender, EventArgs e)
         {
-
+            Form_QEcode qecode = new Form_QEcode();
+            qecode.Show();
         }
     }
 }

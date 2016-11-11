@@ -92,6 +92,7 @@ namespace Wlan
         //修改信息
         private void btn_edit_Click(object sender, EventArgs e)
         {
+
             int index = Int32.Parse(Dgv_db1.CurrentRow.Cells[0].Value.ToString());
             String string_name = txt_name.Text.Trim();
             String string_cnname = txt_cnname.Text.Trim();
@@ -99,11 +100,43 @@ namespace Wlan
             String string_LocalLink = txt_LocalLink.Text.Trim();
             String string_Dlink = txt_D_link.Text.Trim();
             String string_author = txt_author.Text.Trim();
-            String sql = String.Format("update anime set Name='{0}' , Name_CN='{1}',Staff='{2}',LocalLink='{3}',Dlink='{4}',Author='{5}' where num=",
-                string_name, string_cnname, string_staff, string_LocalLink.Replace("\\", "\\\\"), string_Dlink, string_author);
-            sql = sql + index;
-            Console.WriteLine(sql);
-            cmd_select(sql);
+
+            Anime anime = new Anime(index, string_name, string_cnname, string_staff, string_LocalLink, string_Dlink, string_author);
+
+            String sql = String.Format("update anime set Name = 'asl', Name_CN = 'asl', Staff = 'asl', LocalLink = 'asl', DLink = 'asl', Author = 'asl' where Num = 29");
+            MySqlCommand command = new MySqlCommand();
+            command.Connection = new MySqlConnection(str_db);
+            command.CommandText = "update anime set Name = @Name, Name_CN = @Name_CN, Staff = @Staff, LocalLink = @LocalLink, DLink = @DLink, Author = @Author where Num = 29";
+            
+            
+            MySqlParameter[] parameters =
+            {
+                new MySqlParameter("@Name",MySqlDbType.VarChar),
+                new MySqlParameter("@Name_CN",MySqlDbType.VarChar),
+                new MySqlParameter("@Staff",MySqlDbType.VarChar),
+                new MySqlParameter("@LocalLink",MySqlDbType.VarChar),
+                new MySqlParameter("@DLink",MySqlDbType.VarChar),
+                new MySqlParameter("@Author",MySqlDbType.VarChar),
+                new MySqlParameter("@Num",MySqlDbType.Int32)
+            };
+
+            parameters[0].Value = anime.Name1;
+            parameters[1].Value = anime.Name_cn1;
+            parameters[2].Value = anime.Staff1;
+            parameters[3].Value = anime.LocalLink1;
+            parameters[4].Value = anime.DLink1;
+            parameters[5].Value = anime.Author1;
+            parameters[6].Value = anime.Num1;
+            command.Parameters.AddRange(parameters);
+          
+            command.Connection.Open();
+            //command.Parameters.Add(parameters[0]);
+            Console.WriteLine(command.CommandText);
+            command.ExecuteNonQuery();
+          
+            Console.WriteLine(command.CommandText);
+            command.Connection.Close();
+            //cmd_select("select * from anime");
         }
 
         //呼叫存储过程
