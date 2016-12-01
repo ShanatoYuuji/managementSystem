@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_QEcode));
             this.btn_QEcode = new System.Windows.Forms.Button();
             this.txt_in = new System.Windows.Forms.TextBox();
             this.lab_txt = new System.Windows.Forms.Label();
@@ -38,7 +39,7 @@
             // 
             // btn_QEcode
             // 
-            this.btn_QEcode.Location = new System.Drawing.Point(398, 158);
+            this.btn_QEcode.Location = new System.Drawing.Point(326, 143);
             this.btn_QEcode.Name = "btn_QEcode";
             this.btn_QEcode.Size = new System.Drawing.Size(75, 23);
             this.btn_QEcode.TabIndex = 0;
@@ -48,7 +49,7 @@
             // 
             // txt_in
             // 
-            this.txt_in.Location = new System.Drawing.Point(398, 102);
+            this.txt_in.Location = new System.Drawing.Point(326, 87);
             this.txt_in.Name = "txt_in";
             this.txt_in.Size = new System.Drawing.Size(261, 21);
             this.txt_in.TabIndex = 1;
@@ -56,7 +57,7 @@
             // lab_txt
             // 
             this.lab_txt.AutoSize = true;
-            this.lab_txt.Location = new System.Drawing.Point(396, 38);
+            this.lab_txt.Location = new System.Drawing.Point(326, 23);
             this.lab_txt.Name = "lab_txt";
             this.lab_txt.Size = new System.Drawing.Size(113, 12);
             this.lab_txt.TabIndex = 2;
@@ -64,7 +65,7 @@
             // 
             // btn_show
             // 
-            this.btn_show.Location = new System.Drawing.Point(398, 238);
+            this.btn_show.Location = new System.Drawing.Point(326, 223);
             this.btn_show.Name = "btn_show";
             this.btn_show.Size = new System.Drawing.Size(75, 23);
             this.btn_show.TabIndex = 3;
@@ -74,7 +75,7 @@
             // 
             // PicB_show
             // 
-            this.PicB_show.Location = new System.Drawing.Point(77, 24);
+            this.PicB_show.Location = new System.Drawing.Point(25, 15);
             this.PicB_show.Name = "PicB_show";
             this.PicB_show.Size = new System.Drawing.Size(250, 250);
             this.PicB_show.TabIndex = 4;
@@ -84,12 +85,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 338);
+            this.ClientSize = new System.Drawing.Size(617, 309);
             this.Controls.Add(this.PicB_show);
             this.Controls.Add(this.btn_show);
             this.Controls.Add(this.lab_txt);
             this.Controls.Add(this.txt_in);
             this.Controls.Add(this.btn_QEcode);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_QEcode";
             this.Text = "Form_QEcode";
             ((System.ComponentModel.ISupportInitialize)(this.PicB_show)).EndInit();
